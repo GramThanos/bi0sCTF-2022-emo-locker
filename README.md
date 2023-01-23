@@ -1,5 +1,8 @@
 # bi0sCTF-2022-emo-locker
 
+![image](https://user-images.githubusercontent.com/14858959/214005352-76bf81ac-38ec-45c6-9b63-bdf036cb0130.png)
+
+
 The first thing we identify is that the app is taking a value from the URL without filtering it and use it to load CSS code.
 ![image](https://user-images.githubusercontent.com/14858959/214001671-b508e6a2-23e2-4f8f-9df0-80f4bf4cf5da.png)
 
