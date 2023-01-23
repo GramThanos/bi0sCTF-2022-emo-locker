@@ -12,7 +12,7 @@ https://cdn.jsdelivr.net/npm/darkmode-css@1.0.1/xxxxxxx-mode.css
 ```
 By visiting `http://web.chall.bi0s.in:10101/#../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?` the CSS that the page will load will be:
 ```
-https://cdn.jsdelivr.net/npm/darkmode-css@1.0.1/../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?-mode.css
+https://cdn.jsdelivr.net/gh/GramThanos/github_repo_here@github_commit_here/malicious.css?-mode.css
 ```
 
 Since the code is in CSS, we will have to detect the user actions (click) using CSS. This is done by creating a request on each action and monitoring the requests. Normaly to do that you add background image requests on actions such as "hover", "focus", "active", but here since the client is a bot, such mouse events where not working.
